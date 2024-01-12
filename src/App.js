@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useImmer } from "use-immer";
+import Map from "./jsx/map/Map";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { createContext, useState } from "react";
+import "./default/default.css";
+export const MapContext = createContext();
 function App() {
+  let [latLng, updateLatLng] = useImmer({
+    lat: 37.497965,
+    lng: 127.027627,
+  });
+  let [serchKeyword, setSerchKeyWord] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <MapContext.Provider
+        value={{
+          latLng,
+          updateLatLng,
+          serchKeyword,
+          setSerchKeyWord,
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<Map />} />
+        </Routes>
+      </MapContext.Provider>
+    </BrowserRouter>
   );
 }
 
