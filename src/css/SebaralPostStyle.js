@@ -62,9 +62,10 @@ export const Posting = styled.section`
 export const PostMap = styled.div`
   margin-top: 1vh;
   width: 350px;
-  height: 300px;
+  height: 250px;
   border: 1px solid black;
   border-radius: 20px;
+  flex-shrink: 0;
 `;
 export const PostFooter = styled.section`
   width: 100%;

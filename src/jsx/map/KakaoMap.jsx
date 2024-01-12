@@ -4,9 +4,16 @@ import { MapContext } from "../../App";
 import * as S from "../../css/MapStyle";
 // const { kakao } = window;
 const Location = () => {
-  const { latLng, serchKeyword, arr, updateArr, data, updataData } =
-    useContext(MapContext);
-  console.log(serchKeyword);
+  const {
+    latLng,
+    serchKeyword,
+    arr,
+    updateArr,
+    data,
+    updataData,
+    state,
+    setState,
+  } = useContext(MapContext);
   useEffect(() => {
     let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
     const container = document.getElementById("map");
@@ -30,7 +37,6 @@ const Location = () => {
 
     const ps = new kakao.maps.services.Places();
     if (serchKeyword != undefined) {
-      console.log(serchKeyword);
       ps.keywordSearch(serchKeyword, placesSearchCB);
       // console.log("a");
     }
@@ -61,14 +67,13 @@ const Location = () => {
             place.place_name +
             "</div>"
         );
-        console.log(place);
-        updataData((data) => {
-          data.lat = place.x;
-          data.lan = place.y;
-          data.name = place.place_name;
-        });
         updateArr((arr) => {
-          arr.push(data);
+          let obj = {
+            title: String(place.place_name),
+            lat: Number(place.x),
+            lng: Number(place.y),
+          };
+          arr.push(obj);
         });
         infowindow.open(map, marker);
       });

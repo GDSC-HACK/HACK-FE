@@ -7,6 +7,7 @@ import PostList from "./jsx/posting/PostList";
 import SebralPost from "./jsx/posting/SebralPost";
 import SignUp from "./jsx/user/SignUp";
 import Login from "./jsx/user/Login";
+import Edit from "./jsx/posting/Edit";
 export const MapContext = createContext();
 function App() {
   const [latLng, updateLatLng] = useImmer({
@@ -17,6 +18,9 @@ function App() {
 
   const [arr, updateArr] = useImmer([]);
   const [data, updataData] = useImmer(obj);
+
+  const [edit, setEdit] = useState(false);
+  const [state, setState] = useState([]);
   return (
     <BrowserRouter>
       <MapContext.Provider
@@ -29,12 +33,17 @@ function App() {
           updateArr,
           data,
           updataData,
+          state,
+          setState,
+          edit,
+          setEdit,
         }}
       >
         <Routes>
           <Route path="/" element={<Map />} />
           <Route path="/Posting" element={<PostList />}></Route>
           <Route path="/Post" element={<SebralPost />}></Route>
+          <Route path="/Edit" element={<Edit />}></Route>
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/Login" element={<Login />} />
         </Routes>
@@ -48,5 +57,5 @@ export default App;
 let obj = {
   lat: "",
   lng: "",
-  name: "",
+  title: "",
 };

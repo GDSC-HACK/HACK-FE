@@ -6,12 +6,18 @@ import { useContext } from "react";
 import { MapContext } from "../App";
 export default function Footer() {
   const login = localStorage.getItem("login");
+  const { edit, setEdit } = useContext(MapContext);
   return (
     <>
       <footer>
         <Link to="/">
           <div>
-            <FiMapPin className="icon" />
+            <FiMapPin
+              className="icon"
+              onClick={() => {
+                setEdit(false);
+              }}
+            />
             <span>지도</span>
           </div>
         </Link>

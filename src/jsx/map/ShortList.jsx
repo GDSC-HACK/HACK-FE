@@ -1,7 +1,15 @@
+import { useContext } from "react";
+import { MapContext } from "../../App";
+
 export default function ShortList() {
+  const { arr } = useContext(MapContext);
+  // console.log(arr);
   return (
     <>
-      <div>짧은 일정</div>
+      {arr.map((x, n) => {
+        // console.log(x);
+        return <div key={n}>{x.title}</div>;
+      })}
     </>
   );
 }
