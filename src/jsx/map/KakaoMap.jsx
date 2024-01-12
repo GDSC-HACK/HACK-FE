@@ -4,7 +4,8 @@ import { MapContext } from "../../App";
 import * as S from "../../css/MapStyle";
 // const { kakao } = window;
 const Location = () => {
-  const { latLng, serchKeyword } = useContext(MapContext);
+  const { latLng, serchKeyword, currentService } = useContext(MapContext);
+  console.log(serchKeyword);
   useEffect(() => {
     let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
     const container = document.getElementById("map");
@@ -15,8 +16,22 @@ const Location = () => {
     const map = new window.kakao.maps.Map(container, options);
 
     //----------------------------------------------------------------map 기본 설정
+  }, [latLng]);
+
+  useEffect(() => {
+    let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+    const container = document.getElementById("map");
+    const options = {
+      center: new window.kakao.maps.LatLng(latLng.lat, latLng.lng),
+      level: 2,
+    };
+    const map = new window.kakao.maps.Map(container, options);
+
     const ps = new kakao.maps.services.Places();
-    ps.keywordSearch(serchKeyword, placesSearchCB);
+    if (serchKeyword != undefined) {
+      console.log(serchKeyword);
+      ps.keywordSearch(serchKeyword, placesSearchCB);
+    }
 
     function placesSearchCB(data, status, pagination) {
       if (status === kakao.maps.services.Status.OK) {
@@ -33,7 +48,6 @@ const Location = () => {
         map.setBounds(bounds);
       }
     }
-
     function displayMarker(place) {
       // 마커를 생성하고 지도에 표시합니다
       var marker = new kakao.maps.Marker({
@@ -50,11 +64,10 @@ const Location = () => {
             "</div>"
         );
         infowindow.open(map, marker);
-        // console.log(place);// 이걸로 좌표값, 식당 이름 저장
+        console.log(place); // 이걸로 좌표값, 식당 이름 저장
       });
     }
   }, [serchKeyword]);
-
   return (
     <>
       <S.MapStyle id="map"></S.MapStyle>

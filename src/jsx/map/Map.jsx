@@ -2,10 +2,12 @@ import Header from "../../default/Header";
 import { IoIosSearch } from "react-icons/io";
 import { MapContext } from "../../App";
 import { useContext, useState } from "react";
-import RestourantList from "./RestourantList";
 import Footer from "../../default/Footer";
 import Location from "./KakaoMap";
+import ShortList from "./ShortList";
+import { LongList } from "./LongList";
 import * as S from "../../css/MapStyle";
+import Modal from "./Modal";
 
 function Map() {
   const { setSerchKeyWord } = useContext(MapContext);
@@ -20,6 +22,7 @@ function Map() {
     <>
       <Header />
       <S.Main>
+        {/* <Modal /> */}
         <S.Search className="serch">
           <IoIosSearch className="serchIcon" />
           <input
@@ -55,7 +58,8 @@ function Map() {
               장기 계획
             </button>
           </S.BtnBox>
-          <RestourantList />
+          {planStyle && <ShortList />}
+          {!planStyle && <LongList />}
         </S.ListBox>
       </S.Main>
       <Footer />
