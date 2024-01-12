@@ -5,33 +5,23 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { MapContext } from "../App";
 export default function Footer() {
-  const { currentService } = useContext(MapContext);
+  const login = localStorage.getItem("login");
   return (
     <>
       <footer>
         <Link to="/">
           <div>
-            <FiMapPin
-              className="icon"
-              onClick={() => {
-                currentService.current = "map";
-              }}
-            />
+            <FiMapPin className="icon" />
             <span>지도</span>
           </div>
         </Link>
-        <Link to="/Post">
+        <Link to="/Posting">
           <div>
-            <IoBookmark
-              className="icon"
-              onClick={() => {
-                currentService.current = "post";
-              }}
-            />
+            <IoBookmark className="icon" />
             <span>포스팅</span>
           </div>
         </Link>
-        <Link to="/User">
+        <Link to={login == null ? "/Login" : "User"}>
           <div>
             <FaUserLarge className="icon" />
             <span>내 정보</span>

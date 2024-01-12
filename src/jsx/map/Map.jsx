@@ -8,9 +8,11 @@ import ShortList from "./ShortList";
 import { LongList } from "./LongList";
 import * as S from "../../css/MapStyle";
 import Modal from "./Modal";
+import { useImmer } from "use-immer";
 
 function Map() {
-  const { setSerchKeyWord } = useContext(MapContext);
+  const { setSerchKeyWord, arr, updateArr, date, updataData } =
+    useContext(MapContext);
   const [planStyle, setPlanStyle] = useState(true);
   const enterEvent = (e) => {
     // e.defaultPrevent();

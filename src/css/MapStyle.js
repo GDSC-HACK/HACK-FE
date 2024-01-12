@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const Main = styled.main`
   width: 100%;
-  height: 704px;
+  height: 628px;
   display: flex;
   flex-direction: column;
   align-items: center;
   /* justify-content: space-evenly; */
   position: absolute;
-  top: 129px;
+  top: 89px;
 `;
 
 export const Search = styled.div`

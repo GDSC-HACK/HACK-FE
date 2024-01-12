@@ -25,7 +25,7 @@ export default function PostList() {
             </div>
           </S.SelectBox>
         </S.PostHead>
-        <span>#{"입력한 해쉬태그"}</span>
+        <span className="currentHash">#{"입력한 해쉬태그"}</span>
         <S.PostBox className="postList">
           <Post />
         </S.PostBox>

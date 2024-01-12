@@ -4,7 +4,8 @@ import { MapContext } from "../../App";
 import * as S from "../../css/MapStyle";
 // const { kakao } = window;
 const Location = () => {
-  const { latLng, serchKeyword, currentService } = useContext(MapContext);
+  const { latLng, serchKeyword, arr, updateArr, data, updataData } =
+    useContext(MapContext);
   console.log(serchKeyword);
   useEffect(() => {
     let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
@@ -31,6 +32,7 @@ const Location = () => {
     if (serchKeyword != undefined) {
       console.log(serchKeyword);
       ps.keywordSearch(serchKeyword, placesSearchCB);
+      // console.log("a");
     }
 
     function placesSearchCB(data, status, pagination) {
@@ -49,22 +51,26 @@ const Location = () => {
       }
     }
     function displayMarker(place) {
-      // 마커를 생성하고 지도에 표시합니다
       var marker = new kakao.maps.Marker({
         map: map,
         position: new kakao.maps.LatLng(place.y, place.x),
       });
-      // console.log(marker);
-      // 마커에 클릭이벤트를 등록합니다
       kakao.maps.event.addListener(marker, "click", function () {
-        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
         infowindow.setContent(
           '<div style="padding:5px;font-size:12px;">' +
             place.place_name +
             "</div>"
         );
+        console.log(place);
+        updataData((data) => {
+          data.lat = place.x;
+          data.lan = place.y;
+          data.name = place.place_name;
+        });
+        updateArr((arr) => {
+          arr.push(data);
+        });
         infowindow.open(map, marker);
-        console.log(place); // 이걸로 좌표값, 식당 이름 저장
       });
     }
   }, [serchKeyword]);
