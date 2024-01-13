@@ -1,0 +1,25 @@
+{
+  "message": "string",
+  "result": {
+    "postId": 1,
+    "authorName": "이잉",
+    "title": "아일",
+    "content": "strinㄴㅁ윰너ㅏㅜ",
+    "foodMap": {
+      "mapNodeList": [
+        {
+          "restaurantName": "하남돼지집",
+          "latitude": 37.620842424005616,
+          "longitude": 127.1583774403176
+        }
+      ]
+    },
+    "commentList": [
+      {
+        "commentId": 0,
+        "author": "string",
+        "content": "string"
+      }
+    ]
+  }
+}

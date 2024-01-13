@@ -6,15 +6,31 @@ import { FaHeart } from "react-icons/fa";
 import { IoChatbubbleSharp } from "react-icons/io5";
 import { FaBookmark } from "react-icons/fa";
 import * as S from "../../css/SebaralPostStyle";
+import { useContext, useEffect, useState } from "react";
+import { MapContext } from "../../App";
 
 export default function SebralPost() {
+  const { id } = useContext(MapContext);
+  const [arr, setArr] = useState([]);
+  const fetchFunc = async () => {
+    try {
+      let response = await fetch(`/dum/data2.json`);
+      let dataArr = await response.json();
+      setArr(dataArr);
+    } catch (err) {
+      console.log("err", err);
+    }
+  };
+  useEffect(() => {
+    fetchFunc();
+  }, []);
   return (
     <>
       <Header />
       <S.Main>
         <S.Posting>
           <div className="info">
-            <span>user</span>
+            <span>{arr.result.authorName}</span>
             <div className="menuIcon">
               <span>.</span>
               <span>.</span>

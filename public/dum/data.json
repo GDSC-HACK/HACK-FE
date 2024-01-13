@@ -1,0 +1,37 @@
+{
+  "message": "string",
+  "result": [
+    {
+      "post_id": 0,
+      "title": "이잉",
+      "content": "집에 가고 싶다",
+      "userName": "s집",
+      "foodMap": {
+        "mapNodeList": [
+          {
+            "restaurantName": "하남돼지집",
+            "latitude": 37.620842424005616,
+            "longitude": 127.1583774403176
+          }
+        ]
+      },
+      "commentCnt": 0
+    },
+    {
+      "post_id": 1,
+      "title": "야호",
+      "content": "해가 떴다",
+      "userName": "예예",
+      "foodMap": {
+        "mapNodeList": [
+          {
+            "restaurantName": "s히히",
+            "latitude": 37.62197524055062,
+            "longitude": 37.62197524055062
+          }
+        ]
+      },
+      "commentCnt": 0
+    }
+  ]
+}

@@ -5,18 +5,22 @@ import { FaBookmark } from "react-icons/fa";
 import * as S from "../../css/PostStyle";
 import Plan from "./Plan";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { MapContext } from "../../App";
 
-export default function Post() {
-  let arr = [0, 1, 2, 3];
+export default function Post({ title, content, userName, map, key }) {
+  // const { setId } = useContext(MapContext);
   const navigate = useNavigate();
+
   return (
     <S.Post
-      onClick={() => {
+      onClick={(e) => {
+        // setId(key);
         navigate("/Post");
       }}
     >
       <S.SevralPostHead className="head">
-        <span>user</span>
+        <span>{userName}</span>
         <div className="menuIcon">
           <span>.</span>
           <span>.</span>
@@ -24,16 +28,20 @@ export default function Post() {
         </div>
       </S.SevralPostHead>
       <div className="textBox">
-        <p>제목</p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla, qui
-          sit vitae incidunt mollitia quibusdam amet fugit delectus laudantium!
-          Praesentium repellat odio rerum. Ea aut, eum beatae fugiat quos sequi!
-        </p>
+        <p>{title}</p>
+        <p>{content}</p>
       </div>
       <S.Coures>
-        {arr.map((x, n) => {
-          return <Plan n={n} />;
+        {map.map((x, n) => {
+          // console.log(x);
+          return (
+            <Plan
+              let={x.latitude}
+              lng={x.longitude}
+              name={x.restaurantName}
+              key={x.latitude * n}
+            />
+          );
         })}
       </S.Coures>
       <S.PostFooter className="footer">

@@ -69,9 +69,9 @@ const Location = () => {
         );
         updateArr((arr) => {
           let obj = {
-            title: String(place.place_name),
-            lat: Number(place.x),
-            lng: Number(place.y),
+            restaurantName: String(place.place_name),
+            latitude: Number(place.x),
+            longitude: Number(place.y),
           };
           arr.push(obj);
         });

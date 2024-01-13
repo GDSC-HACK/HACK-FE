@@ -176,7 +176,7 @@ export const Coures = styled.section`
 
 export const Box = styled.div`
   margin: 1.5vh 2vw 0 0;
-  width: 60px;
+  width: auto;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -185,7 +185,7 @@ export const Box = styled.div`
 `;
 export const PlanBox = styled.div`
   margin: 0 0.5vw 0 0.5vw;
-  width: 40px;
+  width: auto;
   height: 40px;
   font-size: 15px;
   display: flex;

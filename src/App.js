@@ -20,7 +20,9 @@ function App() {
   const [data, updataData] = useImmer(obj);
 
   const [edit, setEdit] = useState(false);
-  const [state, setState] = useState([]);
+
+  const id = useRef("");
+
   return (
     <BrowserRouter>
       <MapContext.Provider
@@ -33,10 +35,9 @@ function App() {
           updateArr,
           data,
           updataData,
-          state,
-          setState,
           edit,
           setEdit,
+          id,
         }}
       >
         <Routes>
