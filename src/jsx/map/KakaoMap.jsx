@@ -13,6 +13,8 @@ const Location = () => {
     updataData,
     state,
     setState,
+    pop,
+    setPop,
   } = useContext(MapContext);
   useEffect(() => {
     let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
@@ -25,6 +27,19 @@ const Location = () => {
 
     //----------------------------------------------------------------map 기본 설정
   }, [latLng]);
+  const fetchFunc = async (name) => {
+    try {
+      const response = await fetch(`/summarize_reviews/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(name),
+      });
+    } catch (error) {
+      console.error("패치 실패");
+    }
+  };
 
   useEffect(() => {
     let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
@@ -75,6 +90,8 @@ const Location = () => {
           };
           arr.push(obj);
         });
+        fetchFunc(place.place_name);
+        setPop(true);
         infowindow.open(map, marker);
       });
     }

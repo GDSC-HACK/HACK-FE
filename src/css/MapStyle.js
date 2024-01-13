@@ -97,6 +97,7 @@ export const Modal = styled.div`
   align-items: center;
   justify-content: space-between;
   position: absolute;
+  top: 20vh;
   background-color: #f9f9f9;
   z-index: 3;
 

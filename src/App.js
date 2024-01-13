@@ -22,6 +22,7 @@ function App() {
   const [edit, setEdit] = useState(false);
 
   const id = useRef("");
+  const [pop, setPop] = useState(false);
 
   return (
     <BrowserRouter>
@@ -38,6 +39,8 @@ function App() {
           edit,
           setEdit,
           id,
+          pop,
+          setPop,
         }}
       >
         <Routes>

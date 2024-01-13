@@ -13,8 +13,17 @@ import { useNavigate } from "react-router-dom";
 import Edit from "../posting/Edit";
 
 function Map() {
-  const { setSerchKeyWord, arr, updateArr, data, updataData, edit, setEdit } =
-    useContext(MapContext);
+  const {
+    setSerchKeyWord,
+    arr,
+    updateArr,
+    data,
+    updataData,
+    edit,
+    setEdit,
+    pop,
+    setPop,
+  } = useContext(MapContext);
   const [planStyle, setPlanStyle] = useState(true);
   const navigate = useNavigate();
   const enterEvent = (e) => {
@@ -28,7 +37,7 @@ function Map() {
       <Header />
       {!edit && (
         <S.Main>
-          {/* <Modal /> */}
+          {pop && <Modal />}
           <S.Search className="serch">
             <IoIosSearch className="serchIcon" />
             <input
